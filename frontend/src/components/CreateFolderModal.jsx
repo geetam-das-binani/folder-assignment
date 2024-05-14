@@ -17,7 +17,8 @@ const CreateFolderModal = ({
   closeModal,
   openModal,
   isOpen,
-  title
+  title,
+  loading
 }) => {
   return (
     <>
@@ -48,7 +49,7 @@ const CreateFolderModal = ({
             <Button colorScheme="red" mr={3} onClick={closeModal}>
               Close
             </Button>
-            <Button onClick={handleAddFolder} colorScheme="blue">
+            <Button isLoading={loading} onClick={handleAddFolder} colorScheme="blue">
               Create
             </Button>
           </ModalFooter>

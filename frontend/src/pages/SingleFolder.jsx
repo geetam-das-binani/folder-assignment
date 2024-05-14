@@ -35,6 +35,7 @@ const SingleFolder = () => {
       onClose();
       return;
     }
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", imageName);
     formData.append("image", imageFile);
@@ -48,6 +49,10 @@ const SingleFolder = () => {
     } catch (error) {
       toast.error(error.message);
     }
+    finally{
+      setLoading(false);
+    }
+    
   };
   useEffect(() => {
     getSingleFolderDetails(id)
@@ -74,10 +79,13 @@ const SingleFolder = () => {
           handleAddImage={handleAddImage}
           handleNameChange={handleNameChange}
           handleFileChange={handleFileChange}
+          loading={loading}
         />
         <AddSubFolderModal
           setFetchAgain={setFetchAgain}
           fetchagain={fetchagain}
+          loading={loading}
+          setLoading={setLoading}
         />
       </div>
       {details?.subfolders?.length > 0 ? (

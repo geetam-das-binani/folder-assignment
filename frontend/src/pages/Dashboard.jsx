@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [folderName, setFolderName] = useState("");
   const [fetchAgain, setFetchAgain] = useState(false);
   const [folders, setFolders] = useState([]);
+  const [loading,setLoading]=useState(false)
 
   const openModal = () => onOpen();
   const closeModal = () => onClose();
@@ -24,6 +25,7 @@ const Dashboard = () => {
       return;
     }
     try {
+      setLoading(true)
       const response = await createFolder(folderName);
       if (response) {
         setFetchAgain(!fetchAgain);
@@ -32,7 +34,10 @@ const Dashboard = () => {
         toast.success("Folder created successfully");
       }
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -53,6 +58,7 @@ const Dashboard = () => {
           openModal={openModal}
           closeModal={closeModal}
           isOpen={isOpen}
+          loading={loading}
         />
       </div>
 

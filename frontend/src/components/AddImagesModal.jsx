@@ -19,10 +19,11 @@ const AddImagesModal = ({
   handleAddImage,
   handleNameChange,
   handleFileChange,
+  loading
 }) => {
   return (
     <>
-      <Button sx={{ gap: "10px" }} colorScheme="blue" onClick={openModal}>
+      <Button  sx={{ gap: "10px" }} colorScheme="blue" onClick={openModal}>
         <FaImage /> Add an Image
       </Button>
       <Modal isOpen={isOpen} onClose={closeModal}>
@@ -64,7 +65,7 @@ const AddImagesModal = ({
             <Button colorScheme="red" mr={3} onClick={closeModal}>
               Close
             </Button>
-            <Button onClick={handleAddImage} colorScheme="blue">
+            <Button isLoading={loading} onClick={handleAddImage} colorScheme="blue">
               Create
             </Button>
           </ModalFooter>

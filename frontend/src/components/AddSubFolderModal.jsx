@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { createFolder } from "../actions/folderActions";
 
 
-const AddSubFolderModal = ({fetchagain,setFetchAgain}) => {
+const AddSubFolderModal = ({fetchagain,setFetchAgain,loading,setLoading}) => {
     const { id } = useParams();
     const { onClose, isOpen, onOpen } = useDisclosure();
   const [folderName, setFolderName] = useState("");
@@ -20,7 +20,9 @@ const AddSubFolderModal = ({fetchagain,setFetchAgain}) => {
       closeModal()
       return;
     }
+
     try {
+      setLoading(true)
       const response = await createFolder(folderName,id);
       if (response) {
         setFetchAgain(!fetchagain);
@@ -30,6 +32,8 @@ const AddSubFolderModal = ({fetchagain,setFetchAgain}) => {
       }
     } catch (error) {
       toast.error(error.message);
+    }finally{
+      setLoading(false)
     }
   };
   return (
@@ -41,6 +45,7 @@ const AddSubFolderModal = ({fetchagain,setFetchAgain}) => {
     openModal={openModal}
     closeModal={closeModal}
     isOpen={isOpen}
+    loading={loading}
   />
   )
 }
