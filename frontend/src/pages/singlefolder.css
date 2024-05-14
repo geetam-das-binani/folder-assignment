@@ -1,0 +1,36 @@
+.add__image__modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+ 
+}
+
+.folder__name {
+  text-align: center;
+  font-size: 2vmax;
+  color: #302d2d;
+  font-weight: bolder;
+  margin: 1rem 0;
+  text-decoration: underline;
+ 
+}
+
+.folder__images{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+}
+
+.folder__images > img {
+  width:150px;
+  height: 150px;
+  object-fit: cover;
+}
