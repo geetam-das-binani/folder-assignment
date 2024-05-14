@@ -1,9 +1,9 @@
 import axios from "axios";
-const API_BASE_URL = "http://localhost:8000/api/v1";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ""
 export const createFolder = async (folderName, parentFolderId = "") => {
   try {
     const { data } = await axios.post(
-      `${API_BASE_URL}/create-folder`,
+      `${API_BASE_URL}/api/v1/create-folder`,
       { name: folderName, parentFolderId },
       {
         withCredentials: true,
@@ -19,7 +19,7 @@ export const createFolder = async (folderName, parentFolderId = "") => {
 };
 
 export const getMyFolders = async () => {
-  const { data } = await axios.get(`${API_BASE_URL}/my-folders`, {
+  const { data } = await axios.get(`${API_BASE_URL}/api/v1/my-folders`, {
     withCredentials: true,
   });
 
@@ -28,7 +28,7 @@ export const getMyFolders = async () => {
 
 export const getSingleFolderDetails = async (id) => {
   try {
-    const { data } = await axios.get(`${API_BASE_URL}/folder-details/${id}`, {
+    const { data } = await axios.get(`${API_BASE_URL}/api/v1/folder-details/${id}`, {
       withCredentials: true,
     });
 
@@ -41,7 +41,7 @@ export const getSingleFolderDetails = async (id) => {
 export const addImageToFolder = async (id, formData) => {
   try {
     const { data } = await axios.post(
-      `${API_BASE_URL}/folder/add-image/${id}`,
+      `${API_BASE_URL}/api/v1/folder/add-image/${id}`,
       formData,
       {
         withCredentials: true,
@@ -60,7 +60,7 @@ export const addImageToFolder = async (id, formData) => {
 export const handleSearch = async (query) => {
   try {
     const { data } = await axios.get(
-      `${API_BASE_URL}/folder/search?keyword=${query}`,
+      `${API_BASE_URL}/api/v1/folder/search?keyword=${query}`,
 
       {
         withCredentials: true,

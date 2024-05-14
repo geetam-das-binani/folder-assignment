@@ -5,10 +5,10 @@ import {
   logoutUser,
 } from "../store/user/userSlice";
 import axios from "axios";
-const API_BASE_URL = "http://localhost:8000/api/v1";
+const API_BASE_URL =import.meta.env.VITE_API_BASE_URL || ""
 export const loadUser = async (dispatch) => {
   try {
-    const { data } = await axios.get(`${API_BASE_URL}/me`, {
+    const { data } = await axios.get(`${API_BASE_URL}/api/v1/me`, {
       withCredentials: true,
     });
 
@@ -20,7 +20,7 @@ export const loadUser = async (dispatch) => {
 
 export const handleRegisterUser = async (user, dispatch) => {
   try {
-    const { data } = await axios.post(`${API_BASE_URL}/register`, user, {
+    const { data } = await axios.post(`${API_BASE_URL}/api/v1/register`, user, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const handleRegisterUser = async (user, dispatch) => {
 
 export const handleLoginUser = async (user, dispatch) => {
   try {
-    const { data } = await axios.post(`${API_BASE_URL}/login`, user, {
+    const { data } = await axios.post(`${API_BASE_URL}/api/v1/login`, user, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const handleLoginUser = async (user, dispatch) => {
 };
 
 export const logUserOut = async (dispatch) => {
-  await axios.get(`${API_BASE_URL}/logout`, {
+  await axios.get(`${API_BASE_URL}/api/v1/logout`, {
     withCredentials: true,
   });
   dispatch(logoutUser());
